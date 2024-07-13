@@ -15,6 +15,13 @@ export class ReadyListener extends Listener {
     if (client === null) return;
     const { username, id } = client.user!;
     this.container.logger.info(`Successfully logged in as ${username} (${id})`);
+    (
+      client.channels.cache.get(
+        process.env.GITHUB_LOGS_CHANNEL_ID || ""
+      ) as TextChannel
+    ).send(
+      "**[AUTOMATIC]** \nBot has been Successfully **Deployed** and **Ready**"
+    );
     try {
       setInterval(() => {
         let error_log = "";
