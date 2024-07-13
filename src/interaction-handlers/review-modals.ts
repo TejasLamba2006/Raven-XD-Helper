@@ -25,7 +25,7 @@ export class ModalHandler extends InteractionHandler {
   }
 
   public async run(interaction: ModalSubmitInteraction) {
-    await interaction.deferReply();
+    await interaction.deferReply({ ephemeral: true });
     const reviewId = interaction.customId.split("-")[1];
     const review = interaction.fields;
     const channelLogs = interaction.guild?.channels.cache.get(
@@ -54,26 +54,22 @@ export class ModalHandler extends InteractionHandler {
         content: "Rating should be between 1-10.",
       });
     }
+    const reviewDetails = {
+      name: interaction.user.username,
+      country: review.getTextInputValue("country"),
+      designation: "Member",
+      time: new Date().toDateString(),
+      image: interaction.user.displayAvatarURL(),
+      review: {
+        rating: review.getTextInputValue("rating"),
+        title: review.getTextInputValue("title"),
+        description: review.getTextInputValue("description"),
+      },
+    };
     await channelLogs.send({
       content: `Review by <@${reviewId}> \n ${codeBlock(
         "js",
-        JSON.stringify(
-          `
-            {
-            "name": ${interaction.user.username},
-            "country": ${review.getTextInputValue("country")},
-            "designation": "Member",
-            "time": ${new Date().toDateString()},
-            "image": ${interaction.user.displayAvatarURL()},
-            "review": {
-                "rating": ${review.getTextInputValue("rating")},
-                "tittle": ${review.getTextInputValue("title")},
-                "description": ${review.getTextInputValue("description")}
-            }
-            `,
-          null,
-          2
-        )
+        JSON.stringify(reviewDetails, null, 2)
       )}`,
     });
     await interaction.editReply({
