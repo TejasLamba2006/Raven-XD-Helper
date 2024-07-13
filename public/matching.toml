@@ -5,3 +5,11 @@ Head over to https://wiki.client.wtf/ and follow the instructions there.
 """
 mention = true
 reply = true
+
+[server-list]
+keyphrases = ["server list", "server-list"]
+content = """
+You can find a list of servers at https://wiki.client.wtf/Beginners/Anticheat
+"""
+mention = true
+reply = true
