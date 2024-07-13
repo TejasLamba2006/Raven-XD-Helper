@@ -15,7 +15,7 @@ mention = true
 reply = true
 
 [modules]
-keyphrases = ["modules", "module list", "available modules"]
+keyphrases = ["module list", "available modules"]
 content = """
 Check out the list of available modules and their descriptions at https://wiki.client.wtf/
 """
