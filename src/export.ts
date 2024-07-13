@@ -2,7 +2,12 @@ import { PermissionFlagsBits } from "discord.js";
 import { z } from "zod";
 
 export const config = z
-  .object({ TOKEN: z.string(), PREFIX: z.string() })
+  .object({
+    TOKEN: z.string(),
+    PREFIX: z.string(),
+    GITHUB_LOGS_CHANNEL_ID: z.string(),
+    REVIEW_CHANNEL_ID: z.string(),
+  })
   .parse(process.env);
 
 export const PERMISSIONS = [
