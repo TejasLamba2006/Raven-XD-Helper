@@ -17,7 +17,7 @@ reply = true
 [modules]
 keyphrases = ["modules", "module list", "available modules"]
 content = """
-Check out the list of available modules and their descriptions at https://wiki.client.wtf/Modules
+Check out the list of available modules and their descriptions at https://wiki.client.wtf/
 """
 mention = true
 reply = true
@@ -43,6 +43,14 @@ reply = true
 keyphrases = ["profiles", "load profile", "save profile", "manage profile"]
 content = """
 Learn how to configure your profiles at https://wiki.client.wtf/Beginners/Config
+"""
+mention = true
+reply = true
+
+[commands]
+keyphrases = ["commands", "command list", "available commands"]
+content = """
+Check out the list of available commands at https://wiki.client.wtf/Beginners/Commands
 """
 mention = true
 reply = true
