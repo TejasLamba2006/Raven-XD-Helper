@@ -1,5 +1,5 @@
 import { Listener } from "@sapphire/framework";
-import type { Client, TextChannel } from "discord.js";
+import { ActivityType, type Client, type TextChannel } from "discord.js";
 import { exec } from "child_process";
 export class ReadyListener extends Listener {
   public constructor(
@@ -56,5 +56,17 @@ export class ReadyListener extends Listener {
     } catch (e) {
       client.logger.error(e);
     }
+    setInterval(() => {
+      try {
+        client.user?.setActivity(
+          `${client.users.cache.size} hackers in Raven XD`,
+          {
+            type: ActivityType.Watching,
+          }
+        );
+      } catch (e) {
+        client.logger.error(e);
+      }
+    }, 15 * 1000);
   }
 }
