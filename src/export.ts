@@ -7,6 +7,7 @@ export const config = z
     PREFIX: z.string(),
     GITHUB_LOGS_CHANNEL_ID: z.string(),
     REVIEW_CHANNEL_ID: z.string(),
+    REVIEW_CHANNEL_LOGS_ID: z.string(),
   })
   .parse(process.env);
 
