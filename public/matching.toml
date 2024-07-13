@@ -13,3 +13,36 @@ You can find a list of servers at https://wiki.client.wtf/Beginners/Anticheat
 """
 mention = true
 reply = true
+
+[modules]
+keyphrases = ["modules", "module list", "available modules"]
+content = """
+Check out the list of available modules and their descriptions at https://wiki.client.wtf/Modules
+"""
+mention = true
+reply = true
+
+[scripting]
+keyphrases = ["scripting", "how to script", "script examples"]
+content = """
+Learn how to create scripts and find examples at https://wiki.client.wtf/Scripting/Setup and https://wiki.client.wtf/Scripting/API
+"""
+mention = true
+reply = true
+
+[config]
+keyphrases = ["configs", "configuration", "load config", "save config", "manage config"]
+content = """
+In Raven XD, configs are referred to as profiles.
+Learn how to configure your profiles at https://wiki.client.wtf/Beginners/Config
+"""
+mention = true
+reply = true
+
+[profile]
+keyphrases = ["profiles", "load profile", "save profile", "manage profile"]
+content = """
+Learn how to configure your profiles at https://wiki.client.wtf/Beginners/Config
+"""
+mention = true
+reply = true
