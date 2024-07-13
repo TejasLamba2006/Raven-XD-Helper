@@ -21,8 +21,6 @@ export class ModalHandler extends InteractionHandler {
   }
 
   public override parse(interaction: ModalSubmitInteraction) {
-    if (interaction.customId.startsWith("review")) return this.none();
-
     return this.some();
   }
 
