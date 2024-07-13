@@ -95,7 +95,7 @@ export class ReadyListener extends Listener {
           messages.find(
             (m) =>
               m.author.id === client.user?.id &&
-              m.embeds[0]?.footer?.text === "Review Footer: 1"
+              m.embeds[0]?.footer?.text === "Review Footer: 2"
           )
         ) {
           return;
@@ -105,9 +105,9 @@ export class ReadyListener extends Listener {
               new EmbedBuilder()
                 .setTitle("Review")
                 .setDescription(
-                  "You can review the client by clicking the button below."
+                  "You can review the client by clicking the button below. \n If your review is legit it will be displayed at https://wiki.client.wtf/Beginners/Reviews"
                 )
-                .setFooter({ text: "Review Footer: 1" })
+                .setFooter({ text: "Review Footer: 2" })
                 .setColor("Green"),
             ],
             components: [
