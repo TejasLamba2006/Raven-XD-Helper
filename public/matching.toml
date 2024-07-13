@@ -1,5 +1,5 @@
 [install]
-keyphrases = ["how to install"]
+keyphrases = ["how to install", "get it to work"]
 content = """
 Head over to https://wiki.client.wtf/ and follow the instructions there.
 """
