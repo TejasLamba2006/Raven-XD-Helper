@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Bun",
+      "program": "${workspaceFolder}/src/index.ts", // Adjust the entry point as needed
+      "runtimeExecutable": "bun", // Point to the Bun runtime
+      "runtimeArgs": ["run"], // Arguments to start Bun
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+    "ping": "🏓 Pong! `{{roundTime}}ms` round trip, `{{ping}}ms` API heartbeat",
+    "invite": {
+        "button": {
+            "label": "Invite"
+        },
+        "embed": {
+            "title": "Invite Developer Utilities",
+            "description": "Click the button below to invite Developer Utilities to your server."
+        }
+    }
+}
