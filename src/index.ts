@@ -1,6 +1,6 @@
 import "@sapphire/plugin-i18next/register";
 import { LogLevel } from "@sapphire/framework";
-import { GatewayIntentBits } from "discord.js";
+import { Collection, GatewayIntentBits } from "discord.js";
 import { config } from "./export.js";
 import * as TOML from "@iarna/toml";
 import { readFileSync } from "node:fs";
@@ -34,7 +34,7 @@ export const client = new Client({
 const autoResponseData = readFileSync(
   fileURLToPath(new URL("../public/matching.toml", import.meta.url))
 );
-export const autoResponses: AutoResponse[] = [];
+export const autoResponses: Collection<string, AutoResponse> = new Collection();
 try {
   const parsedAutoResponses = TOML.parse(autoResponseData.toString());
 
@@ -46,7 +46,7 @@ try {
       },
       `Registering autoresponse: ${key}`
     );
-    autoResponses.push(autoResponse);
+    autoResponses.set(key, autoResponse);
   }
 } catch (error) {
   client.logger.error({ error }, "Failed to load autoresponses");
