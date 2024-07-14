@@ -34,7 +34,6 @@ export class MessageCreateListener extends Listener {
     }
     if (message.attachments.size > 0) {
       const attachment = message.attachments.first();
-      console.log(attachment?.contentType);
       if (attachment?.contentType === "application/json; charset=utf-8") {
         const data = await request(attachment.url);
         const json = (await data.body.json()) as Profile;
