@@ -12,10 +12,11 @@ export class MessageCreateListener extends Listener {
       event: "messageCreate",
     });
   }
-  public run(message: Message) {
+  public async run(message: Message<true>) {
     if (message.author?.bot) {
       return;
     }
+    await message.fetch();
     const autoResponse = autoResponses.find((autoResponse) =>
       autoResponse.keyphrases.some((keyphrase) =>
         message.content.toLowerCase().includes(keyphrase.toLowerCase())
@@ -25,6 +26,18 @@ export class MessageCreateListener extends Listener {
       return;
     }
     if (autoResponse.reply) {
+      if (message.reference && message.reference.messageId) {
+        const referencedMessage = await message.channel.messages.fetch(
+          message.reference.messageId
+        );
+        referencedMessage.reply({
+          content: autoResponse.content,
+          allowedMentions: autoResponse.mention
+            ? { repliedUser: true }
+            : { parse: [] },
+        });
+        return;
+      }
       message.reply({
         content: autoResponse.content,
         allowedMentions: autoResponse.mention

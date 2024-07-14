@@ -1,3 +1,39 @@
+[purpose-profile]
+keyphrases = ["what latest.json", "what default.json"]
+content = """
+### Purpose of `default.json` and `latest.json`
+
+- **`default.json`**:
+The `default.json` file is created if no profiles exist in the profiles directory when the application is launched. It serves as a fallback profile with default settings to ensure that there is always at least one profile available.
+
+- **`latest.json`**:
+  - **Purpose**: The `latest.json` file stores the settings of the most recently used profile. 
+  - **Usage**: Whenever a profile is saved, the settings are also saved to `latest.json`. If `latest.json` exists, it is loaded as the active profile when the application starts. If it doesn't exist, the `default.json` profile is loaded instead.
+"""
+mention = true
+reply = true
+
+
+[feather]
+keyphrases = ["feather", "feather client", "featherclient"]
+content = """
+Feather is closed source, this means we cannot extrapolate what are its incompatibilities with raven XD.
+In addition, we do not wish to support a launcher that is known to have stolen code form open source mods without mentioning them anywhere.
+
+TL;DR: Feather bad, use an actual launcher, whose job is to just launch the game, and possibly handle mods. We'll never work towards compatibility with Feather
+"""
+mention = true
+reply = true
+
+[jdk_errro_1]
+keyphrases = ["JDK not found", "JDK not installed", "JDK error"]
+content = """
+You need to install the Java Development Kit (JDK) to compile and run Java code.
+Download the JDK from https://wiki.client.wtf/Scripting/Setup
+"""
+mention = true
+reply = true
+
 [install]
 keyphrases = ["how to install", "get it to work"]
 content = """
@@ -31,7 +67,7 @@ mention = true
 reply = true
 
 [config]
-keyphrases = ["configs", "configuration", "load config", "save config", "manage config"]
+keyphrases = ["configs", "configuration", "load config", "save config", "manage config", "change your config", "remove config", "download the config", "how download raven"]
 content = """
 In Raven XD, configs are referred to as profiles.
 Learn how to configure your profiles at https://wiki.client.wtf/Beginners/Config
