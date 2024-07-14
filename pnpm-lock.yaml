@@ -32,9 +32,6 @@ dependencies:
   discord.js:
     specifier: ^14.15.3
     version: 14.15.3
-  keycode:
-    specifier: ^2.2.1
-    version: 2.2.1
   undici:
     specifier: ^6.19.2
     version: 6.19.2
@@ -451,10 +448,6 @@ packages:
       universalify: 0.1.2
     optionalDependencies:
       graceful-fs: 4.2.11
-    dev: false
-
-  /keycode@2.2.1:
-    resolution: {integrity: sha512-Rdgz9Hl9Iv4QKi8b0OlCRQEzp4AgVxyCtz5S/+VIHezDmrDhkp2N2TqBWOLz0/gbeREXOOiI9/4b8BY9uw2vFg==}
     dev: false
 
   /lodash.snakecase@4.1.1:
