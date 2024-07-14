@@ -114,6 +114,7 @@ export class MessageCreateListener extends Listener {
               name:
                 index === 0 ? "🟢Enabled Module" : "🟢Enabled Module (cont.)",
               value: fieldValue || "None",
+              inline: true,
             });
           });
 
@@ -121,6 +122,7 @@ export class MessageCreateListener extends Listener {
             embed.addFields({
               name: index === 0 ? "🔑Keybind" : "🔑Keybind (cont.)",
               value: fieldValue || "None",
+              inline: true,
             });
           });
           await reply.edit({ embeds: [embed], content: "" });
