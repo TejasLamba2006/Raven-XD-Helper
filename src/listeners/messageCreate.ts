@@ -16,6 +16,10 @@ export class MessageCreateListener extends Listener {
     if (message.author?.bot) {
       return;
     }
+    const prefix = (await this.container.client.fetchPrefix(message)) || "!";
+    if (message.content.startsWith(prefix?.toString())) {
+      return;
+    }
     await message.fetch();
     const autoResponse = autoResponses.find((autoResponse) =>
       autoResponse.keyphrases.some((keyphrase) =>
