@@ -37,7 +37,7 @@ export class MessageCreateListener extends Listener {
       console.log(attachment?.contentType);
       if (attachment?.contentType === "application/json; charset=utf-8") {
         const data = await request(attachment.url);
-        const json = JSON.parse(data.toString()) as Profile;
+        const json = (await data.body.json()) as Profile;
         if (json) {
           const reply = await message.reply({
             content: "Received a Raven XD profile, processing...",
