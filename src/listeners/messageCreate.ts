@@ -70,7 +70,7 @@ export class MessageCreateListener extends Listener {
           enabled.forEach((module) => {
             const moduleInfo = Object.entries(module)
               .map(([key, value]) => {
-                if (key === "name") {
+                if (key === "prettyName") {
                   return `**${value}**`;
                 }
                 if (typeof value === "boolean") {
@@ -82,7 +82,7 @@ export class MessageCreateListener extends Listener {
                   }
                   value = keycode(value as number);
                 }
-                if (key === "prettyName") {
+                if (key === "name") {
                   return;
                 }
                 return `${key}: \`${value}\``;
@@ -101,7 +101,7 @@ export class MessageCreateListener extends Listener {
                     value = parseInt(value.split("M")[1]) + 1000;
                   }
                   value = keycode(value as number);
-                  return `${key}: \`${value}\``;
+                  return `${module.prettyName}: \`${value}\``;
                 }
               })
               .filter(Boolean)
