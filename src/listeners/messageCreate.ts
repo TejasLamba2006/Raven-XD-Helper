@@ -93,6 +93,9 @@ export class MessageCreateListener extends Listener {
           keybinds?.forEach((module) => {
             const moduleInfo = Object.entries(module)
               .map(([key, value]) => {
+                if (key === "name") {
+                  return `**${value}**`;
+                }
                 if (key === "keybind") {
                   if (typeof value === "string" && value.startsWith("M")) {
                     value = parseInt(value.split("M")[1]) + 1000;
