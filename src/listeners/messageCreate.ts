@@ -102,7 +102,7 @@ export class MessageCreateListener extends Listener {
                 }
               })
               .filter(Boolean)
-              .join("\n");
+              .join(", ");
 
             if (moduleInfo) {
               addToField(keybindsFields, moduleInfo + "\n");
