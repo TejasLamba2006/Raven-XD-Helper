@@ -2,7 +2,7 @@ import { Listener } from "@sapphire/framework";
 import { EmbedBuilder, type Message } from "discord.js";
 import { autoResponses } from "..";
 import { request } from "undici";
-import * as keycode from "keycode";
+import keycode from "keycode";
 interface Module {
   name: string;
   prettyName: string;
