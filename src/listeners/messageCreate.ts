@@ -49,58 +49,80 @@ export class MessageCreateListener extends Listener {
           );
           const embed = new EmbedBuilder()
             .setTitle(attachment.name.split(".")[0])
-            .setColor("Green")
-            .addFields(
-              {
-                name: "🟢Enabled Module",
-                value:
-                  enabled
-                    .map((module) =>
-                      Object.entries(module)
-                        .map(([key, value]) => {
-                          if (typeof value === "boolean") {
-                            value = value ? "Yes" : "No";
-                          }
-                          if (key === "keybind") {
-                            if (
-                              typeof value === "string" &&
-                              value.startsWith("M")
-                            ) {
-                              value = parseInt(value.split("M")[1]) + 1000;
-                            }
-                            value = keycode(value as number);
-                          }
-                          if (key === "prettyName") {
-                            return;
-                          }
-                          return `${key}: \`${value}\``;
-                        })
-                        .join("\n")
-                    )
-                    .join("\n") || "None",
-              },
-              {
-                name: "🔑Keybind",
-                value:
-                  keybinds
-                    ?.map((module) =>
-                      Object.entries(module)
-                        .map(([key, value]) => {
-                          if (key === "keybind") {
-                            if (
-                              typeof value === "string" &&
-                              value.startsWith("M")
-                            ) {
-                              value = parseInt(value.split("M")[1]) + 1000;
-                            }
-                            value = keycode(value as number);
-                          }
-                        })
-                        .join("\n")
-                    )
-                    .join("\n") || "None",
-              }
-            );
+            .setColor("Green");
+
+          const MAX_FIELD_LENGTH = 1024;
+          let enabledModulesFields = [""];
+          let keybindsFields = [""];
+
+          function addToField(fieldArray: string[], moduleInfo: string) {
+            let currentFieldIndex = fieldArray.length - 1;
+            if (
+              fieldArray[currentFieldIndex].length + moduleInfo.length >
+              MAX_FIELD_LENGTH
+            ) {
+              fieldArray.push(moduleInfo);
+            } else {
+              fieldArray[currentFieldIndex] += moduleInfo;
+            }
+          }
+
+          enabled.forEach((module) => {
+            const moduleInfo = Object.entries(module)
+              .map(([key, value]) => {
+                if (typeof value === "boolean") {
+                  value = value ? "Yes" : "No";
+                }
+                if (key === "keybind") {
+                  if (typeof value === "string" && value.startsWith("M")) {
+                    value = parseInt(value.split("M")[1]) + 1000;
+                  }
+                  value = keycode(value as number);
+                }
+                if (key === "prettyName") {
+                  return;
+                }
+                return `${key}: \`${value}\``;
+              })
+              .filter(Boolean)
+              .join("\n");
+
+            addToField(enabledModulesFields, moduleInfo + "\n");
+          });
+
+          keybinds?.forEach((module) => {
+            const moduleInfo = Object.entries(module)
+              .map(([key, value]) => {
+                if (key === "keybind") {
+                  if (typeof value === "string" && value.startsWith("M")) {
+                    value = parseInt(value.split("M")[1]) + 1000;
+                  }
+                  value = keycode(value as number);
+                  return `${key}: \`${value}\``;
+                }
+              })
+              .filter(Boolean)
+              .join("\n");
+
+            if (moduleInfo) {
+              addToField(keybindsFields, moduleInfo + "\n");
+            }
+          });
+
+          enabledModulesFields.forEach((fieldValue, index) => {
+            embed.addFields({
+              name:
+                index === 0 ? "🟢Enabled Module" : "🟢Enabled Module (cont.)",
+              value: fieldValue || "None",
+            });
+          });
+
+          keybindsFields.forEach((fieldValue, index) => {
+            embed.addFields({
+              name: index === 0 ? "🔑Keybind" : "🔑Keybind (cont.)",
+              value: fieldValue || "None",
+            });
+          });
           await reply.edit({ embeds: [embed], content: "" });
         }
       }
