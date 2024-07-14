@@ -17,7 +17,6 @@ interface Profile {
   keybind: number;
   modules: Module[];
 }
-
 export class MessageCreateListener extends Listener {
   public constructor(
     context: Listener.LoaderContext,
@@ -42,10 +41,12 @@ export class MessageCreateListener extends Listener {
             content: "Received a Raven XD profile, processing...",
           });
           await message.react("👍");
+
           const enabled = json.modules.filter((module) => module.enabled);
           const keybinds = json.modules.filter(
             (module) => module.keybind !== 0
           );
+
           const embed = new EmbedBuilder()
             .setTitle(attachment.name.split(".")[0])
             .setColor("Green");
@@ -69,6 +70,9 @@ export class MessageCreateListener extends Listener {
           enabled.forEach((module) => {
             const moduleInfo = Object.entries(module)
               .map(([key, value]) => {
+                if (key === "name") {
+                  return `**${value}**`;
+                }
                 if (typeof value === "boolean") {
                   value = value ? "Yes" : "No";
                 }
@@ -92,9 +96,6 @@ export class MessageCreateListener extends Listener {
           keybinds?.forEach((module) => {
             const moduleInfo = Object.entries(module)
               .map(([key, value]) => {
-                if (key === "name") {
-                  return `**${value}**`;
-                }
                 if (key === "keybind") {
                   if (typeof value === "string" && value.startsWith("M")) {
                     value = parseInt(value.split("M")[1]) + 1000;
@@ -114,7 +115,9 @@ export class MessageCreateListener extends Listener {
           enabledModulesFields.forEach((fieldValue, index) => {
             embed.addFields({
               name:
-                index === 0 ? "🟢Enabled Module" : "🟢Enabled Module (cont.)",
+                index === 0
+                  ? "🟢 Enabled Modules"
+                  : "🟢 Enabled Modules (cont.)",
               value: fieldValue || "None",
               inline: true,
             });
@@ -122,11 +125,12 @@ export class MessageCreateListener extends Listener {
 
           keybindsFields.forEach((fieldValue, index) => {
             embed.addFields({
-              name: index === 0 ? "🔑Keybind" : "🔑Keybind (cont.)",
+              name: index === 0 ? "🔑 Keybinds" : "🔑 Keybinds (cont.)",
               value: fieldValue || "None",
               inline: true,
             });
           });
+
           await reply.edit({ embeds: [embed], content: "" });
         }
       }
