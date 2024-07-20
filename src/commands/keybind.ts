@@ -50,7 +50,6 @@ export class PingCommand extends Command {
           .setColor("Green");
 
         const MAX_FIELD_LENGTH = 1024;
-        let enabledModulesFields = [""];
         let keybindsFields = [""];
 
         function addToField(fieldArray: string[], moduleInfo: string) {
@@ -79,15 +78,6 @@ export class PingCommand extends Command {
           if (moduleInfo) {
             addToField(keybindsFields, moduleInfo + "\n");
           }
-        });
-
-        enabledModulesFields.forEach((fieldValue, index) => {
-          embed.addFields({
-            name:
-              index === 0 ? "🟢 Enabled Modules" : "🟢 Enabled Modules (cont.)",
-            value: fieldValue || "None",
-            inline: true,
-          });
         });
 
         keybindsFields.forEach((fieldValue, index) => {
@@ -118,7 +108,6 @@ export class PingCommand extends Command {
           .setColor("Green");
 
         const MAX_FIELD_LENGTH = 1024;
-        let enabledModulesFields = [""];
         let keybindsFields = [""];
 
         function addToField(fieldArray: string[], moduleInfo: string) {
@@ -147,15 +136,6 @@ export class PingCommand extends Command {
           if (moduleInfo) {
             addToField(keybindsFields, moduleInfo + "\n");
           }
-        });
-
-        enabledModulesFields.forEach((fieldValue, index) => {
-          embed.addFields({
-            name:
-              index === 0 ? "🟢 Enabled Modules" : "🟢 Enabled Modules (cont.)",
-            value: fieldValue || "None",
-            inline: true,
-          });
         });
 
         keybindsFields.forEach((fieldValue, index) => {
